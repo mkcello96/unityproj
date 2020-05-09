@@ -9,6 +9,10 @@ public class DialogueManager : MonoBehaviour
 	public Text nameText;
 	public Text dialogueText;
 
+	public GameObject dialoguePanel;
+
+	public bool dialogueModeEnabled = false;
+
 	//public Animator animator;
 
 	private Queue<string> sentences;
@@ -22,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 	public void StartDialogue(Dialogue dialogue)
 	{
 		//animator.SetBool("IsOpen", true);
+		dialogueModeEnabled = true;
+		dialoguePanel.SetActive(true);
 
 		nameText.text = dialogue.name;
 
@@ -61,6 +67,8 @@ public class DialogueManager : MonoBehaviour
 	void EndDialogue()
 	{
 		//animator.SetBool("IsOpen", false);
+		dialogueModeEnabled = false;
+		dialoguePanel.SetActive(false);
 	}
 
 }

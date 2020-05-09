@@ -1,0 +1,11 @@
+**/.DS_Store
+**/.vs/**
+flightprototype/Assembly-CSharp-Editor.csproj
+flightprototype/Assembly-CSharp.csproj
+flightprototype/Library/**
+flightprototype/Logs/**
+flightprototype/Packages/**
+flightprototype/Temp/**
+**/__MACOSX/**
+flightprototype/obj/**
+flightprototype/test1.sln
