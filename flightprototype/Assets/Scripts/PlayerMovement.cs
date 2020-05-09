@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetButtonDown("Fire1"))
         {
             flightModeEnabled = !flightModeEnabled;
@@ -77,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = Mathf.Max(velocity.y, downwardSoarVelocity);
             }
 
-            Debug.Log(velocity);
             controller.Move(velocity * Time.deltaTime);
         }
         else
