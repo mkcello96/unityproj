@@ -15,12 +15,12 @@ public class DialogueManager : MonoBehaviour
 
 	//public Animator animator;
 
-	private Queue<string> sentences;
+	private Queue<string> diagSegments;
 
 	// Use this for initialization
 	void Start()
 	{
-		sentences = new Queue<string>();
+		diagSegments = new Queue<string>();
 	}
 
 	public void StartDialogue(Dialogue dialogue)
@@ -29,38 +29,38 @@ public class DialogueManager : MonoBehaviour
 		dialogueModeEnabled = true;
 		dialoguePanel.SetActive(true);
 
-		nameText.text = dialogue.name;
+		nameText.text = dialogue.charName;
 
-		sentences.Clear();
+		diagSegments.Clear();
 
-		foreach (string sentence in dialogue.sentences)
+		foreach (string sentence in dialogue.diagSegments)
 		{
-			sentences.Enqueue(sentence);
+			diagSegments.Enqueue(sentence);
 		}
 
-		DisplayNextSentence();
+		DisplayNextSegment();
 	}
 
-	public void DisplayNextSentence()
+	public void DisplayNextSegment()
 	{
-		if (sentences.Count == 0)
+		if (diagSegments.Count == 0)
 		{
 			EndDialogue();
 			return;
 		}
 
-		string sentence = sentences.Dequeue();
+		string sentence = diagSegments.Dequeue();
 		StopAllCoroutines();
-		StartCoroutine(TypeSentence(sentence));
+		StartCoroutine(TypeSegment(sentence));
 	}
 
-	IEnumerator TypeSentence(string sentence)
+	IEnumerator TypeSegment(string sentence)
 	{
 		dialogueText.text = "";
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return null;
+			yield return new WaitForSeconds(0.01f);
 		}
 	}
 

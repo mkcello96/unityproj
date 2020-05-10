@@ -666,19 +666,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 745482975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d8a363247d894479ce93bbb426fc24, type: 3}
+  m_Script: {fileID: 11500000, guid: 18e414cfd5406c146acc9b716c46a998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: NPC
-    sentences:
-    - Hello my name is NPC
-    - 58@*(#_&#%@_(@#%_
-    - uu
-    - 5
-    - 454_
-    - ghkghk
-    - hgjghjghj@#%_
+  name: NPC
+  diagSegments:
+  - Hello. I am cylinder
+  - 'I am very round I am very round I am very round I am very round I am very round
+    I am very round I am very round I am very round I am very round I am very round
+    I am very round I am very round I am very round I am very round I am very round
+    I am very round I am very round I am very round I am very round I am very round
+    I am very round I am very round I am very round I am very round I am very round
+    I am very round I am very round I am very round '
+  - g
 --- !u!1 &771463563
 GameObject:
   m_ObjectHideFlags: 0

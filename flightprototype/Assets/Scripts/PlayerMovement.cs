@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private const int UNIT_MIN_DISTANCE_TO_INTERACT = 4;
+
     public CharacterController controller;
     public DialogueManager dialogueManager;
     public Text flightModeText;
@@ -22,22 +24,15 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
-    bool isSoaring;
-
-    Dialogue sample;
 
 
     void Start()
     {
         flightModeText.text = "Flight Mode Off";
         flightModeText.color = Color.red;
-
-        sample = new Dialogue();
-        sample.name = "blahblah";
-        sample.sentences = new string[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
     }
 
-    private Dialogue findDialogueOfFacingNpc()
+    private Dialogue findDialogueOfCloseNpc()
     {
         var objectsWithTag = GameObject.FindGameObjectsWithTag("InteractableChar");
         GameObject closeObject = null;
@@ -45,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //compares distances
             UnityEngine.Debug.Log(Vector3.Distance(transform.position, obj.transform.position));
-            if (Vector3.Distance(transform.position, obj.transform.position) <= 4)
+            if (Vector3.Distance(transform.position, obj.transform.position) <= UNIT_MIN_DISTANCE_TO_INTERACT)
             {
                 closeObject = obj;
             }
@@ -56,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            return closeObject.GetComponentInChildren<DialogueTrigger>().dialogue;
+            return closeObject.GetComponentInChildren<Dialogue>();
             //return null;
         }
     }
@@ -67,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2")) // e - interactions
         {
-            Dialogue maybeNpcDialogue = findDialogueOfFacingNpc();
+            Dialogue maybeNpcDialogue = findDialogueOfCloseNpc();
 
             if (maybeNpcDialogue != null)
             {
@@ -77,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    dialogueManager.DisplayNextSentence();
+                    dialogueManager.DisplayNextSegment();
                 }
             }
             //Debug.Log(dialogueManager.dialogueModeEnabled);
